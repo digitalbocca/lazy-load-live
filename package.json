@@ -3,8 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "cleancache": "rm -rf ./.parcel-cache",
+    "cleandist": "rm -rf ./dist",
+    "optimg": "squoosh-cli --mozjpeg '{\"quality\": 60}' --resize '{\"resize\": true, \"width\": 1200}' -d ./dist ./dist/*.jpg",
+    "predev": "npm run cleancache && npm run cleandist",
+    "prebuild": "npm run cleancache && npm run cleandist",
     "dev": "parcel serve ./src/index.html --no-cache -p 8080",
-    "build": "parcel build ./src/index.html --no-scope-hoist --no-source-maps --public-url './'"
+    "build": "parcel build ./src/index.html --no-scope-hoist --no-source-maps --public-url './'",
+    "postbuild": "npm run optimg"
   },
   "keywords": [],
   "author": "",
